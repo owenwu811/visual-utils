@@ -3,15 +3,16 @@
 import { useState } from "react";
 
 export default function FileUploader() {
-  const [image, setImage] = useState(null); // State to store the uploaded image
+  const [image, setImage] = useState<string | null>(null); // State to store the uploaded image
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  // Typing the event parameter as a ChangeEvent for an input element
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; // Optional chaining to prevent null errors
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        setImage(reader.result); // Set the image as base64 string
+        setImage(reader.result as string); // Cast to string as FileReader result is string
       };
 
       reader.readAsDataURL(file); // Read the file as a data URL
