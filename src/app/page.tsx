@@ -1,8 +1,11 @@
+import FileUploader from "../components/ui/FileUploader";
 
 export default function Home() {
   return (
     <div>
-      <h1>This Should Change Vercel Deployment</h1>
+      <h1>Hello all</h1>
+      <FileUploader /> {/* need to call FileUploader here */}
     </div>
   );
 }
+
